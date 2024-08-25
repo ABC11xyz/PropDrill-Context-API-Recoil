@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { CountContext } from './context';
 
 const App = () => {
 
@@ -6,20 +7,30 @@ const App = () => {
 
   return (
     <div>
-      <Count count = {count} setCount = {setCount}/>
-      
+      <CountContext.Provider value={count}>
+         <Show setCount = {setCount}/>
+      </CountContext.Provider>
+
     </div>
   )
 }
 
-function Count ({count , setCount}) {
+function Show ({setCount}) {
   return <div>
-    {count}
-    <Buttons count = {count} setCount = {setCount} />
+    <CounterRender />
+    <Buttons  setCount = {setCount} />
   </div>
 }
 
-function Buttons ({count , setCount}) {
+function CounterRender () {
+  const count = useContext(CountContext);
+  return <div>
+    {count}
+  </div>
+}
+
+function Buttons ({setCount}) {
+ const count = useContext(CountContext);
  return <div>
   <button onClick={() => (setCount(count+1))}> Increse</button>
   <button onClick={() => (setCount(count-1))}> Decrease</button>
