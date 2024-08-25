@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div>
        <RecoilRoot>
-           <Show />
+          <Show />
        </RecoilRoot>
       
     </div>
