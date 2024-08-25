@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { CountContext } from './context';
+import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
+import { countAtom } from './store/atoms/count';
 
 const App = () => {
 
-  const [count , setCount] = useState(0);
-
   return (
     <div>
-      <CountContext.Provider value={{count , setCount}}>
-         <Show />
-      </CountContext.Provider>
-
+       <RecoilRoot>
+           <Show />
+       </RecoilRoot>
+      
     </div>
   )
 }
@@ -23,14 +23,14 @@ function Show () {
 }
 
 function CounterRender () {
-  const {count} = useContext(CountContext);
+  const count = useRecoilValue(countAtom);
   return <div>
     {count}
   </div>
 }
 
 function Buttons () {
- const {count , setCount} = useContext(CountContext);
+ const [count , setCount] = useRecoilState(countAtom)
  return <div>
   <button onClick={() => (setCount(count+1))}> Increse</button>
   <button onClick={() => (setCount(count-1))}> Decrease</button>
