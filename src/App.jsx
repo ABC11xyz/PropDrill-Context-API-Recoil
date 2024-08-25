@@ -6,8 +6,8 @@ const App = () => {
 
   return (
     <div>
-      <Count count = {count}/>
-      <Buttons count = {count} setCount = {setCount} />
+      <Count count = {count} setCount = {setCount}/>
+      
     </div>
   )
 }
@@ -15,6 +15,7 @@ const App = () => {
 function Count ({count}) {
   return <div>
     {count}
+    <Buttons count = {count} setCount = {setCount} />
   </div>
 }
 
