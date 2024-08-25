@@ -12,7 +12,7 @@ const App = () => {
   )
 }
 
-function Count ({count}) {
+function Count ({count , setCount}) {
   return <div>
     {count}
     <Buttons count = {count} setCount = {setCount} />
